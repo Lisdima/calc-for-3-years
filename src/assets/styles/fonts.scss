@@ -1,0 +1,32 @@
+// Gerbera
+@font-face {
+  font-family: "Gerbera";
+  src: local("Gerbera Light"), local("Gerbera-Light"), url("~@/assets/fonts/Gerbera/Gerbera-Light.woff2") format("woff2"), url("~@/assets/fonts/Gerbera/Gerbera-Light.woff") format("woff"), url("~@/assets/fonts/Gerbera/Gerbera-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gerbera";
+  src: local("Gerbera"), local("Gerbera"), url("~@/assets/fonts/Gerbera/Gerbera.woff2") format("woff2"), url("~@/assets/fonts/Gerbera/Gerbera.woff") format("woff"), url("~@/assets/fonts/Gerbera/Gerbera.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gerbera";
+  src: local("Gerbera Medium"), local("Gerbera-Medium"), url("~@/assets/fonts/Gerbera/Gerbera-Medium.woff2") format("woff2"), url("~@/assets/fonts/Gerbera/Gerbera-Medium.woff") format("woff"), url("~@/assets/fonts/Gerbera/Gerbera-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gerbera";
+  src: local("Gerbera Bold"), local("Gerbera-Bold"), url("~@/assets/fonts/Gerbera/Gerbera-Bold.woff2") format("woff2"), url("~@/assets/fonts/Gerbera/Gerbera-Bold.woff") format("woff"), url("~@/assets/fonts/Gerbera/Gerbera-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
