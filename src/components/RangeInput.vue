@@ -59,7 +59,6 @@ export default {
     display: flex;
     max-width: none;
   }
-
   &--form {
     width: 100%;
     margin-bottom: 32px;
