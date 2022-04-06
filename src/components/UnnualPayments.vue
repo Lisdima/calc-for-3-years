@@ -121,6 +121,10 @@ export default {
     }
   }
   &__issue {
+    margin-top: 24px;
+    @media (max-width: 640px) {
+      margin-top: 0;
+    }
     .disabled {
       opacity: 0.8;
       &:hover {
