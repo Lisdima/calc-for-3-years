@@ -4,7 +4,7 @@
       h4.calculator--form__title.title Ежегодный взнос
       input#range-input(
         v-model="sum"
-        maxLength="7"
+        maxLength="8"
         @focus="clearRubles"
         @blur="addRubles"
         @input="change($event.target.value)"

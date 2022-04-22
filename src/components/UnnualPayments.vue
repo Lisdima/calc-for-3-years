@@ -5,8 +5,8 @@
         .calculation-item.item(v-for="item in time")
             .item-info
                 span.item-info__time {{item}}-й год
-                span.item-info__bonus.best-bonus(v-if="item === 1") +{{Math.floor((currentSum * 0.28) / currentSum * 100) }}%
-                span.item-info__bonus.best-bonus(v-else) +{{Math.floor((item * currentSum * 0.10) / currentSum * 100) }}%
+                span.item-info__bonus.best-bonus(v-if="item === 1") {{Math.floor((currentSum * 0.28) / currentSum * 100) }}%
+                span.item-info__bonus.best-bonus(v-else) {{Math.floor((item * currentSum * 0.10) / currentSum * 100) }}%
             span.item-money(v-if="item === 1") {{Math.floor(currentSum * 0.28)}} ₽
             span.item-money(v-else) {{Math.floor(item * currentSum * 0.10)}} ₽
         .calculation-item__opacity
@@ -16,14 +16,13 @@
             .deducation-total__name Взносы за {{time}} года
             .deducation-total__sum {{(currentSum * time)}} ₽
     .payments-block__issue
-      a(href="#popup:myform")
-        button.btn.payments-block__btn(:disabled="disabled" :class="{'disabled': disabled}") Оформить
-
+      a
+        button.btn.payments-block__btn(:disabled="disabled" @click="orderUrl" :class="{'disabled': disabled}") Оформить
                      
 </template>
 
 <script>
-import Options from "@/components/AdditionalOptions.vue";
+import Options from '@/components/AdditionalOptions.vue';
 
 export default {
   props: {
@@ -34,25 +33,41 @@ export default {
       type: Number,
     },
     tooltipPayments: {
-      type: Boolean
+      type: Boolean,
     },
     tooltipOptions: Boolean,
+    error: Boolean,
   },
   components: {
     Options,
   },
-  data() {
-  },
+  data() {},
   computed: {
     disabled() {
-      const sum = this.sum.replace(/\D/gi, "");
-      if (sum < 100000 || sum > 5000000) {
+      const sum = this.sum.replace(/\D/gi, '');
+      if (sum < 100000 || sum > 5000000 || this.error) {
         return true;
       }
       return false;
     },
     currentSum() {
-      return this.sum.replace(/[^\d]/g, "");
+      if (this.sum.replace(/[^\d]/g, '') < 100000) {
+        return '100000';
+      }
+      return this.sum.replace(/[^\d]/g, '');
+    },
+    checkEditParam() {
+      const isEditFields = sessionStorage.getItem('edit');
+      if (isEditFields) {
+        return '&edit=true';
+      }
+      return '';
+    },
+  },
+  methods: {
+    orderUrl() {
+      window.location.href = `https://order.renlife.ru/policy/?programBrief=NSZH_FINANCIAL_RENT_DSF_3YEAR&sum=${this.currentSum}${this.checkEditParam}`;
+      return window.location.href;
     },
   },
 };
@@ -185,7 +200,7 @@ export default {
       color: #28323c;
       .tooltip-active {
         a {
-          color: #3E70BB
+          color: #3e70bb;
         }
         @media (max-width: 960px) {
           left: -500%;
