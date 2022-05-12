@@ -56,17 +56,10 @@ export default {
       }
       return this.sum.replace(/[^\d]/g, '');
     },
-    checkEditParam() {
-      const isEditFields = sessionStorage.getItem('edit');
-      if (isEditFields) {
-        return '&edit=true';
-      }
-      return '';
-    },
   },
   methods: {
     orderUrl() {
-      window.location.href = `https://order.renlife.ru/policy/?programBrief=NSZH_FINANCIAL_RENT_DSF_3YEAR&sum=${this.currentSum}${this.checkEditParam}`;
+      window.location.href = `https://order.renlife.ru/policy/?programBrief=NSZH_FINANCIAL_RENT_DSF_3YEAR&sum=${this.currentSum}${window.location.search.replace('?', '&')}`;
       return window.location.href;
     },
   },
