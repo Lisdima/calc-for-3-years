@@ -301,6 +301,7 @@ export default {
     }
   }
   &__result-img {
+    position: relative;
     &:after {
       content: '';
       width: 45px;
@@ -308,8 +309,8 @@ export default {
       position: absolute;
       background-image: url('@/assets/images/money.svg');
       @media (max-width: 959px) {
-        top: 50%;
-        transform: scale(1.3);
+        top: 55%;
+        transform: scale(1.3) translate(0, -50%);
       }
     }
   }
