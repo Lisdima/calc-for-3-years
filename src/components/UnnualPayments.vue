@@ -8,7 +8,7 @@
             .payout-info__item-fee
               span.payout-info__item-fee--text {{ idx + 1 }}-й взнос
 
-              span.payout-info__price {{ sum < 100000 ? addSpacesOnInput(100000) :  addSpacesOnInput(sum)}}
+              span.payout-info__price {{ fee }}
 
             .payout-info__item-pay
               .payout-info__block-text
@@ -64,6 +64,10 @@ export default {
       const sum = this.sum.replace(/[^\d]/g, '');
       const total = Math.floor(Number(sum) * 0.28) + Math.floor(Number(sum) * 0.2) + Math.floor(Number(sum) * 0.3);
       return total < 78000 ? `${this.addSpacesOnInput(78000)} ₽` : `${this.addSpacesOnInput(total)} ₽`;
+    },
+    fee() {
+      const sum = this.sum.replace(/[^\d]/g, '');
+      return sum < 100000 ? `${this.addSpacesOnInput(100000)} ₽` : `${this.addSpacesOnInput(sum)} ₽`;
     },
   },
   methods: {
