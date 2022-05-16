@@ -1,31 +1,54 @@
-// Gerbera
+// Renins
 @font-face {
-  font-family: "Gerbera";
-  src: local("Gerbera Light"), local("Gerbera-Light"), url("~@/assets/fonts/Gerbera/Gerbera-Light.woff2") format("woff2"), url("~@/assets/fonts/Gerbera/Gerbera-Light.woff") format("woff"), url("~@/assets/fonts/Gerbera/Gerbera-Light.ttf") format("truetype");
+  font-family: 'Renins';
+  src: local('Renins Light'), local('Renins_Light'), url('../fonts/Renins/Renins_Light.eot?#iefix') format('embedded-opentype'), url('../fonts/Renins/Renins_Light.woff2') format('woff2'), url('../fonts/Renins/Renins_Light.woff') format('woff'), url('../fonts/Renins/Renins_Light.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Gerbera";
-  src: local("Gerbera"), local("Gerbera"), url("~@/assets/fonts/Gerbera/Gerbera.woff2") format("woff2"), url("~@/assets/fonts/Gerbera/Gerbera.woff") format("woff"), url("~@/assets/fonts/Gerbera/Gerbera.ttf") format("truetype");
+  font-family: 'Renins';
+  src: local('Roboto Regular'), local('Renins_Regular'), url('../fonts/Renins/Renins_Regular.eot?#iefix') format('embedded-opentype'), url('../fonts/Renins/Renins_Regular.ttf') format('truetype'), url('../fonts/Renins/Renins_Regular.woff2') format('woff2'), url('../fonts/Renins/Renins_Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Renins';
+  src: local('Renins Bold'), local('Renins_Bold'), url('../fonts/Renins/Renins_Bold.eot?#iefix') format('embedded-opentype'), url('../fonts/Renins/Renins_Bold.woff2') format('woff2'), url('../fonts/Renins/Renins_Bold.woff') format('woff'), url('../fonts/Renins/Renins_Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Gerbera
+@font-face {
+  font-family: 'Gerbera';
+  src: local('Gerbera Light'), local('Gerbera-Light'), url('../fonts/Gerbera/Gerbera-Light.woff2') format('woff2'), url('../fonts/Gerbera/Gerbera-Light.woff') format('woff'), url('../fonts/Gerbera/Gerbera-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gerbera';
+  src: local('Gerbera'), local('Gerbera'), url('../fonts/Gerbera/Gerbera.woff2') format('woff2'), url('../fonts/Gerbera/Gerbera.woff') format('woff'), url('../fonts/Gerbera/Gerbera.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Gerbera";
-  src: local("Gerbera Medium"), local("Gerbera-Medium"), url("~@/assets/fonts/Gerbera/Gerbera-Medium.woff2") format("woff2"), url("~@/assets/fonts/Gerbera/Gerbera-Medium.woff") format("woff"), url("~@/assets/fonts/Gerbera/Gerbera-Medium.ttf") format("truetype");
+  font-family: 'Gerbera';
+  src: local('Roboto Medium'), local('Gerbera-Medium'), url('../fonts/Gerbera/Gerbera-Medium.woff2') format('woff2'), url('../fonts/Gerbera/Gerbera-Medium.woff') format('woff'), url('../fonts/Gerbera/Gerbera-Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Gerbera";
-  src: local("Gerbera Bold"), local("Gerbera-Bold"), url("~@/assets/fonts/Gerbera/Gerbera-Bold.woff2") format("woff2"), url("~@/assets/fonts/Gerbera/Gerbera-Bold.woff") format("woff"), url("~@/assets/fonts/Gerbera/Gerbera-Bold.ttf") format("truetype");
+  font-family: 'Gerbera';
+  src: local('Gerbera Bold'), local('Gerbera-Bold'), url('../fonts/Gerbera/Gerbera-Bold.woff2') format('woff2'), url('../fonts/Gerbera/Gerbera-Bold.woff') format('woff'), url('../fonts/Gerbera/Gerbera-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
