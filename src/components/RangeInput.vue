@@ -13,7 +13,6 @@
         .slider-input__terms-text-l(:class="{'sub-title__error': error}") {{ minValue }}
 
         .slider-input__terms-text-r(:class="{'sub-title__error': error}") {{ maxValue }}
-      //- p.calculator__sub-title.sub-title.sub-title__error(v-else) от 100 000 ₽ до 5 000 000 ₽
   a
     button.btn.payments-block__btn(v-if="width > 959" :disabled="disabled" @click="orderUrl" :class="{'disabled': disabled}") Оформить
 
