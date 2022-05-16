@@ -89,14 +89,14 @@ export default {
     payoutSum(time) {
       if (time === 1) {
         const sumFirstYear = Math.floor(Number(this.sum.replace(/[^\d]/g, '')) * 0.28);
-        return sumFirstYear < 100000 ? this.addSpacesOnInput(Math.floor(100000 * 0.28)) : this.addSpacesOnInput(sumFirstYear);
+        return sumFirstYear < 100000 * 0.28 ? this.addSpacesOnInput(Math.floor(100000 * 0.28)) : this.addSpacesOnInput(sumFirstYear);
       }
       if (time === 2) {
         const sumSecondYear = Math.floor(Number(this.sum.replace(/[^\d]/g, '')) * 0.2);
-        return sumSecondYear < 100000 ? this.addSpacesOnInput(Math.floor(100000 * 0.2)) : this.addSpacesOnInput(sumSecondYear);
+        return sumSecondYear < 100000 * 0.2 ? this.addSpacesOnInput(Math.floor(100000 * 0.2)) : this.addSpacesOnInput(sumSecondYear);
       }
       const sumThirdYear = Math.floor(Number(this.sum.replace(/[^\d]/g, '')) * 0.3);
-      return sumThirdYear < 100000 ? this.addSpacesOnInput(Math.floor(100000 * 0.3)) : this.addSpacesOnInput(sumThirdYear);
+      return sumThirdYear < 100000 * 0.3 ? this.addSpacesOnInput(Math.floor(100000 * 0.3)) : this.addSpacesOnInput(sumThirdYear);
     },
     payoutPercent(time) {
       if (time === 1) {
