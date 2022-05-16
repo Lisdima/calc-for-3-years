@@ -1,6 +1,6 @@
 <template lang="pug">
 .payments-block
-    .payments-block__title.title Ежегодные выплаты
+    .payments-block__title.title Выплата фиксированного ежегодного дохода
     .payout-info
       .payout-info__content
         .payout-info__list
@@ -19,7 +19,6 @@
 
         .payout-info__result
           .payout-info__result-img
-            img(src="@/assets/images/money.svg")
           .payout-info__result-info
             span.payout-info__result-text все взносы
             span.payout-info__price.payout-info__price_total + {{ totalSum }}
@@ -282,7 +281,7 @@ export default {
     align-items: flex-start;
     justify-content: space-between;
     flex-direction: row;
-    @media (max-width: 790px) {
+    @media (max-width: 959px) {
       flex-direction: column;
     }
   }
@@ -320,7 +319,7 @@ export default {
     display: flex;
     width: 100%;
     flex-direction: row;
-    @media (max-width: 790px) {
+    @media (max-width: 959px) {
       justify-content: space-between;
       flex-direction: column;
     }
@@ -335,7 +334,7 @@ export default {
     @media (max-width: 980px) {
       margin-right: 8px;
     }
-    @media (max-width: 790px) {
+    @media (max-width: 959px) {
       margin-right: 0;
       flex-direction: row;
     }
@@ -347,9 +346,10 @@ export default {
     flex-direction: column;
     padding: 10px 12px;
     border-radius: 4px;
-    @media (max-width: 790px) {
+    @media (max-width: 959px) {
       padding: 8px 55px;
       margin-bottom: 16px;
+      text-align: center;
     }
     @media (max-width: 430px) {
       padding: 8px 0;
@@ -363,7 +363,7 @@ export default {
     background: #f2f6fa;
     color: #28323c;
     margin-bottom: 32px;
-    @media (max-width: 790px) {
+    @media (max-width: 959px) {
       margin-right: 48px;
     }
 
@@ -383,7 +383,7 @@ export default {
       transform: translate(-50%, 100%);
       background-image: url('@/assets/images/arrow-down-step.svg');
       background-position: center;
-      @media (max-width: 790px) {
+      @media (max-width: 959px) {
         bottom: 50%;
         left: 100%;
         width: 12px;
@@ -400,7 +400,7 @@ export default {
     background: linear-gradient(180deg, #b589e7 0%, #8563bf 44.84%, #503988 100%);
     box-shadow: 0px 23px 25px rgba(10, 60, 106, 0.03), 0px 11px 15px rgba(10, 35, 124, 0.05);
     color: #ffffff;
-    @media (max-width: 790px) {
+    @media (max-width: 959px) {
       height: fit-content;
     }
 
@@ -430,7 +430,7 @@ export default {
     color: #ffffff;
     background: linear-gradient(180deg, #b589e7 0%, #8563bf 44.84%, #503988 100%);
     box-shadow: 0px 23px 25px rgba(10, 60, 106, 0.03), 0px 11px 15px rgba(10, 35, 124, 0.05);
-    @media (max-width: 790px) {
+    @media (max-width: 959px) {
       width: 100%;
       flex-direction: row;
       height: auto;
@@ -441,19 +441,15 @@ export default {
       display: flex;
       flex-direction: column;
       order: 1;
-
-      + for-tablet-middle-landscape-up {
-        order: 2;
-      }
     }
-
-    svg {
-      order: 2;
-      max-width: 44px;
-
-      + for-tablet-middle-landscape-up {
-        order: 1;
-      }
+  }
+  &__result-img {
+    &:after {
+      content: '';
+      width: 45px;
+      height: 42px;
+      position: absolute;
+      background-image: url('@/assets/images/money.svg');
     }
   }
 }

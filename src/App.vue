@@ -21,7 +21,7 @@
     @onclick-tooltip-paymets="tooltipPayments = true"
     @onclick-tooltip-opts="tooltipOptions = true"
     )
-  a(v-if="width <= 790" style="width: 100%")
+  a(v-if="width <= 959" style="width: 100%")
     button.btn.payments-block__btn(:disabled="disabled" @click="orderUrl" :class="{'disabled': disabled}") Оформить
 </template>
 

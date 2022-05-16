@@ -15,7 +15,7 @@
         .slider-input__terms-text-r(:class="{'sub-title__error': error}") {{ maxValue }}
       //- p.calculator__sub-title.sub-title.sub-title__error(v-else) от 100 000 ₽ до 5 000 000 ₽
   a
-    button.btn.payments-block__btn(v-if="width > 790" :disabled="disabled" @click="orderUrl" :class="{'disabled': disabled}") Оформить
+    button.btn.payments-block__btn(v-if="width > 959" :disabled="disabled" @click="orderUrl" :class="{'disabled': disabled}") Оформить
 
 
 </template>
@@ -65,7 +65,7 @@ export default {
       this.$emit('changeValue', e);
     },
     orderUrl() {
-      const sum = this.sum.replace(/\D/gi, '')
+      const sum = this.sum.replace(/\D/gi, '');
       window.location.href = `https://order.renlife.ru/policy/?programBrief=NSZH_FINANCIAL_RENT_DSF_3YEAR&sum=${sum}${window.location.search.replace('?', '&')}`;
       return window.location.href;
     },
