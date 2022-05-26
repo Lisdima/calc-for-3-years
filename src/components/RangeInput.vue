@@ -125,7 +125,7 @@ export default {
       this.$emit('changeValue', currentSum);
     },
     orderUrl() {
-      const sum = this.sum.toString().replace(/\D/gi, '');
+      const sum = sessionStorage.getItem('sum') === null ? this.sum.toString().replace(/\D/gi, '') : sessionStorage.getItem('sum');
       sessionStorage.setItem('sum', sum);
       window.location.href = `https://order.renlife.ru/policy/?programBrief=NSZH_FINANCIAL_RENT_DSF_3YEAR&sum=${sum}${window.location.search.replace('?', '&')}`;
       return window.location.href;
