@@ -6,10 +6,10 @@
         .forms__inputs
           input#range-input(
             v-model="value"
-            class="styled-slider slider-progress"
             maxLength="8"
             @focus="onFocus($event.target.value)"
             @blur="onBlur($event.target.value)"
+            @keyup.enter="onBlur($event.target.value); $event.target.blur()"
           )
           input#range-input-slider(
             class="styled-slider slider-progress"
@@ -61,9 +61,11 @@ export default {
   },
   mounted() {
     this.value = `${addSpacesOnInput(this.sum.toString())} ₽`;
-    this.sliderSum = this.sum;
-    this.onBlur(this.sliderSum);
-    this.progressSlider();
+    this.progressSlider(true, sessionStorage.getItem('sum') !== null ? sessionStorage.getItem('sum') : this.sliderSum);
+    if (sessionStorage.getItem('sum') !== null) {
+      this.sliderSumComp = sessionStorage.getItem('sum');
+      this.value = `${addSpacesOnInput(sessionStorage.getItem('sum').toString())} ₽`;
+    }
   },
   computed: {
     sliderSumComp: {
@@ -76,9 +78,9 @@ export default {
     },
   },
   methods: {
-    progressSlider() {
+    progressSlider(getStorage, valueStorage) {
       for (let e of document.querySelectorAll('input[type="range"].slider-progress')) {
-        e.style.setProperty('--value', this.sliderSumComp);
+        !getStorage ? e.style.setProperty('--value', this.sliderSumComp) : e.style.setProperty('--value', valueStorage);
         e.style.setProperty('--min', e.min == '' ? '100000' : e.min);
         e.style.setProperty('--max', e.max == '' ? '5000000' : e.max);
         e.addEventListener('input', () => {
@@ -124,6 +126,7 @@ export default {
     },
     orderUrl() {
       const sum = this.sum.toString().replace(/\D/gi, '');
+      sessionStorage.setItem('sum', sum);
       window.location.href = `https://order.renlife.ru/policy/?programBrief=NSZH_FINANCIAL_RENT_DSF_3YEAR&sum=${sum}${window.location.search.replace('?', '&')}`;
       return window.location.href;
     },

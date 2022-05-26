@@ -65,6 +65,7 @@ export default {
   methods: {
     change(value) {
       this.loading = true;
+      sessionStorage.removeItem('sum')
       document.documentElement.style.transition = 'opacity 0.3s';
       document.documentElement.style.opacity = '0.3';
       this.sum = value
