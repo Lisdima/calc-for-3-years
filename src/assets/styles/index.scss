@@ -1,6 +1,7 @@
 @import './fonts.scss';
 @import './variables.scss';
 @import './el-checkbox.scss';
+@import './animations.scss';
 
 body,
 h1,
@@ -24,6 +25,8 @@ body {
   line-height: 16px;
   font-weight: 400;
   letter-spacing: -0.01em;
+  transition-property: opacity;
+  transition-duration: 2s;
 }
 button,
 a {
@@ -46,11 +49,145 @@ a {
   line-height: 22px;
   padding-left: 8px;
   &:focus {
-    border-color: $main-color;
+    border: 1px solid #c5cbd0;
+    outline: none;
   }
   &::placeholder {
     color: $grey-lightest;
   }
+}
+#range-input-slider {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 90%;
+  cursor: pointer;
+}
+input[type='range'].styled-slider {
+  height: 4px;
+  -webkit-appearance: none;
+}
+
+/*progress support*/
+input[type='range'].styled-slider.slider-progress {
+  --range: calc(var(--max) - var(--min));
+  --ratio: calc((var(--value) - var(--min)) / var(--range));
+  --sx: calc(0.5 * 2em + var(--ratio) * (100% - 2em));
+}
+
+input[type='range'].styled-slider:focus {
+  outline: none;
+}
+
+/*webkit*/
+input[type='range'].styled-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #b2b2b2;
+  box-shadow: 0 0 2px black;
+  margin-top: -5.5px;
+  transition: all 0.1s linear;
+  &:hover {
+    transform: scale(1.2);
+  }
+  &::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #50287d;
+  }
+}
+
+input[type='range'].styled-slider::-webkit-slider-runnable-track {
+  height: 4px;
+  border: 1px solid #b2b2b2;
+  border-radius: none;
+  background: #dbdfe4;
+  box-shadow: none;
+  outline: none;
+  border: none;
+}
+
+input[type='range'].styled-slider.slider-progress::-webkit-slider-runnable-track {
+  background: linear-gradient(#50287d, #50287d) 0 / var(--sx) 100% no-repeat, #dbdfe4;
+}
+
+/*mozilla*/
+input[type='range'].styled-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #b2b2b2;
+  box-shadow: 0 0 2px black;
+  transition: all 0.1s linear;
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+input[type='range'].styled-slider::-moz-range-track {
+  height: 4px;
+  border: 1px solid #b2b2b2;
+  border-radius: none;
+  background: #dbdfe4;
+  box-shadow: none;
+  outline: none;
+  border: none;
+}
+
+input[type='range'].styled-slider.slider-progress::-moz-range-track {
+  background: linear-gradient(#50287d, #50287d) 0 / var(--sx) 100% no-repeat, #dbdfe4;
+}
+
+/*ms*/
+input[type='range'].styled-slider::-ms-fill-upper {
+  background: transparent;
+  border-color: transparent;
+}
+
+input[type='range'].styled-slider::-ms-fill-lower {
+  background: transparent;
+  border-color: transparent;
+}
+
+input[type='range'].styled-slider::-ms-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #b2b2b2;
+  box-shadow: 0 0 2px black;
+  margin-top: 0;
+  box-sizing: border-box;
+  transition: all 0.1s linear;
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+input[type='range'].styled-slider::-ms-track {
+  height: 4px;
+  border-radius: none;
+  background: #dbdfe4;
+  border: 1px solid #b2b2b2;
+  box-shadow: none;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+}
+
+input[type='range'].styled-slider.slider-progress::-ms-fill-lower {
+  height: 4px;
+  border-radius: none;
+  margin: -1px 0 -1px -1px;
+  background: #50287d;
+  border: 1px solid #b2b2b2;
+  border-right-width: 0;
 }
 
 #input-checkbox {

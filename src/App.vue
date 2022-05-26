@@ -3,13 +3,10 @@
   .section-left
     RangeInput(
       :sum="sum"
-      :error="error"
       :time="time"
       :minValue="minValue"
       :maxValue="maxValue"
       :width="width"
-      @on-focus="clearRubles"
-      @on-blur="addRubles"
       @changeValue="change")
   .section-right
     Payments(
@@ -17,18 +14,20 @@
     :time="time"
     :tooltipPayments="tooltipPayments"
     :tooltipOptions="tooltipOptions"
-    :error="error"
     @onclick-tooltip-paymets="tooltipPayments = true"
     @onclick-tooltip-opts="tooltipOptions = true"
     )
   a(v-if="width <= 959" style="width: 100%")
-    button.btn.payments-block__btn(:disabled="disabled" @click="orderUrl" :class="{'disabled': disabled}") Оформить
+    button.btn.payments-block__btn(@click="orderUrl") Оформить
+Loader(:loading="loading")
 </template>
 
 <script>
+// import { addSpacesOnInput, removeAllSpaces } from '@/helpers/index';
 import RangeInput from './components/RangeInput.vue';
 import Options from './components/AdditionalOptions.vue';
 import Payments from './components/UnnualPayments.vue';
+import Loader from './components/LoaderBlock.vue';
 
 export default {
   name: 'App',
@@ -36,17 +35,18 @@ export default {
     RangeInput,
     Options,
     Payments,
+    Loader,
   },
   data() {
     return {
-      sum: '120 000 ₽',
-      error: false,
+      sum: 100000,
       time: 3,
       tooltipOptions: false,
       tooltipPayments: false,
-      minValue: '100 000 ₽',
-      maxValue: '5 000 000 ₽',
+      minValue: 100000,
+      maxValue: 5000000,
       width: null,
+      loading: false,
     };
   },
   created() {
@@ -62,43 +62,28 @@ export default {
       sessionStorage.setItem('edit', true);
     }
   },
-  computed: {
-    disabled() {
-      const sum = this.sum.replace(/\D/gi, '');
-      if (sum < 100000 || sum > 5000000 || this.error) {
-        return true;
-      }
-      return false;
-    },
-  },
   methods: {
-    clearRubles(value) {
-      this.sum = value.replace(/[^\d]/g, '');
-    },
-    addRubles(value) {
-      const currentValue = value.replace(/[^\d]/g, '');
-      if (currentValue < 100000 || currentValue > 5000000) {
-        this.error = true;
-        this.sum = currentValue;
-      } else {
-        this.error = false;
-        this.sum = `${currentValue.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')} ₽`;
-      }
-    },
     change(value) {
-      const currentValue = value.replace(/[^\d]/g, '');
-      if (value < 100000 || value > 5000000) {
-        this.error = true;
-      } else {
-        this.error = false;
+      this.loading = true;
+      document.documentElement.style.transition = 'opacity 0.3s';
+      document.documentElement.style.opacity = '0.3';
+      this.sum = value
+      if (value < 100000 || value === '') {
+        this.sum = 100000;
       }
-      this.sum = currentValue;
+      if (value > 5000000) {
+        this.sum = 5000000;
+      }
+      setTimeout(() => {
+        document.documentElement.style.opacity = '1';
+        this.loading = false;
+      }, 700);
     },
     updateWidth() {
       this.width = window.innerWidth;
     },
     orderUrl() {
-      const sum = this.sum.replace(/\D/gi, '');
+      const sum = this.sum.toString().replace(/\D/gi, '');
       window.location.href = `https://order.renlife.ru/policy/?programBrief=NSZH_FINANCIAL_RENT_DSF_3YEAR&sum=${sum}${window.location.search.replace('?', '&')}`;
       return window.location.href;
     },

@@ -49,31 +49,24 @@ export default {
   },
   data() {},
   computed: {
-    disabled() {
-      const sum = this.sum.replace(/\D/gi, '');
-      if (sum < 100000 || sum > 5000000 || this.error) {
-        return true;
-      }
-      return false;
-    },
     currentSum() {
-      if (this.sum.replace(/[^\d]/g, '') < 100000) {
+      if (this.sum.toString().replace(/[^\d]/g, '') < 100000) {
         return '100000';
       }
-      return this.sum.replace(/[^\d]/g, '');
+      return this.sum.toString().replace(/[^\d]/g, '');
     },
     totalPay() {
-      const sum = this.sum.replace(/[^\d]/g, '');
+      const sum = this.sum.toString().replace(/[^\d]/g, '');
       const total = Math.floor(Number(sum) * this.time);
       return total < 300000 ? `${this.addSpacesOnInput(300000)} ₽` : `${this.addSpacesOnInput(total)} ₽`;
     },
     totalFee() {
-      const sum = this.sum.replace(/[^\d]/g, '');
+      const sum = this.sum.toString().replace(/[^\d]/g, '');
       const total = Math.floor(Number(sum) * 0.28) + Math.floor(Number(sum) * 0.2) + Math.floor(Number(sum) * 0.3);
       return total < 78000 ? `${this.addSpacesOnInput(78000)} ₽` : `${this.addSpacesOnInput(total)} ₽`;
     },
     fee() {
-      const sum = this.sum.replace(/[^\d]/g, '');
+      const sum = this.sum.toString().replace(/[^\d]/g, '');
       return sum < 100000 ? `${this.addSpacesOnInput(100000)} ₽` : `${this.addSpacesOnInput(sum)} ₽`;
     },
   },
@@ -99,14 +92,14 @@ export default {
     },
     payoutSum(time) {
       if (time === 1) {
-        const sumFirstYear = Math.floor(Number(this.sum.replace(/[^\d]/g, '')) * 0.28);
+        const sumFirstYear = Math.floor(Number(this.sum.toString().replace(/[^\d]/g, '')) * 0.28);
         return sumFirstYear < 100000 * 0.28 ? this.addSpacesOnInput(Math.floor(100000 * 0.28)) : this.addSpacesOnInput(sumFirstYear);
       }
       if (time === 2) {
-        const sumSecondYear = Math.floor(Number(this.sum.replace(/[^\d]/g, '')) * 0.2);
+        const sumSecondYear = Math.floor(Number(this.sum.toString().replace(/[^\d]/g, '')) * 0.2);
         return sumSecondYear < 100000 * 0.2 ? this.addSpacesOnInput(Math.floor(100000 * 0.2)) : this.addSpacesOnInput(sumSecondYear);
       }
-      const sumThirdYear = Math.floor(Number(this.sum.replace(/[^\d]/g, '')) * 0.3);
+      const sumThirdYear = Math.floor(Number(this.sum.toString().replace(/[^\d]/g, '')) * 0.3);
       return sumThirdYear < 100000 * 0.3 ? this.addSpacesOnInput(Math.floor(100000 * 0.3)) : this.addSpacesOnInput(sumThirdYear);
     },
     payoutPercent(time) {
