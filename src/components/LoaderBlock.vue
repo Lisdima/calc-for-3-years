@@ -37,12 +37,12 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, 0);
+    svg {
+      width: 100px;
+      height: 100px;
+      margin: 20px;
+      display: inline-block;
+    }
   }
-}
-svg {
-  width: 100px;
-  height: 100px;
-  margin: 20px;
-  display: inline-block;
 }
 </style>
