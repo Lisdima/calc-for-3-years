@@ -10,15 +10,15 @@
 
               span.payout-info__price {{ fee }}
 
-            .payout-info__item-pay
+            .payout-info__item-pay(:class="{'loading-color': updateData}")
               .payout-info__block-text
                 span.payout-info__text выплата
                 span.payout-info__percent {{payoutPercent(idx + 1)}}
 
               span.payout-info__price {{ payoutSum(idx + 1) }} ₽
 
-        .payout-info__result
-          .payout-info__result-img
+        .payout-info__result(:class="{'loading-color': updateData}")
+          .payout-info__result-img(:class="{'payout-info__result-img--black': updateData}")
           .payout-info__result-info
             span.payout-info__result-text все взносы
             span.payout-info__price.payout-info__price_total.total-pay {{ totalPay}}
@@ -29,7 +29,6 @@
 
 <script>
 import Options from '@/components/AdditionalOptions.vue';
-
 export default {
   props: {
     sum: {
@@ -43,37 +42,33 @@ export default {
     },
     tooltipOptions: Boolean,
     error: Boolean,
+    updateData: {
+      type: Boolean,
+    },
   },
   components: {
     Options,
   },
   data() {},
   computed: {
-    disabled() {
-      const sum = this.sum.replace(/\D/gi, '');
-      if (sum < 100000 || sum > 5000000 || this.error) {
-        return true;
-      }
-      return false;
-    },
     currentSum() {
-      if (this.sum.replace(/[^\d]/g, '') < 100000) {
+      if (this.sum.toString().replace(/[^\d]/g, '') < 100000) {
         return '100000';
       }
-      return this.sum.replace(/[^\d]/g, '');
+      return this.sum.toString().replace(/[^\d]/g, '');
     },
     totalPay() {
-      const sum = this.sum.replace(/[^\d]/g, '');
+      const sum = this.sum.toString().replace(/[^\d]/g, '');
       const total = Math.floor(Number(sum) * this.time);
       return total < 300000 ? `${this.addSpacesOnInput(300000)} ₽` : `${this.addSpacesOnInput(total)} ₽`;
     },
     totalFee() {
-      const sum = this.sum.replace(/[^\d]/g, '');
+      const sum = this.sum.toString().replace(/[^\d]/g, '');
       const total = Math.floor(Number(sum) * 0.28) + Math.floor(Number(sum) * 0.2) + Math.floor(Number(sum) * 0.3);
       return total < 78000 ? `${this.addSpacesOnInput(78000)} ₽` : `${this.addSpacesOnInput(total)} ₽`;
     },
     fee() {
-      const sum = this.sum.replace(/[^\d]/g, '');
+      const sum = this.sum.toString().replace(/[^\d]/g, '');
       return sum < 100000 ? `${this.addSpacesOnInput(100000)} ₽` : `${this.addSpacesOnInput(sum)} ₽`;
     },
   },
@@ -99,24 +94,24 @@ export default {
     },
     payoutSum(time) {
       if (time === 1) {
-        const sumFirstYear = Math.floor(Number(this.sum.replace(/[^\d]/g, '')) * 0.28);
-        return sumFirstYear < 100000 * 0.28 ? this.addSpacesOnInput(Math.floor(100000 * 0.28)) : this.addSpacesOnInput(sumFirstYear);
+        const sumFirstYear = Math.floor(Number(this.sum.toString().replace(/[^\d]/g, '')) * 0.2);
+        return sumFirstYear < 100000 * 0.2 ? this.addSpacesOnInput(Math.floor(100000 * 0.2)) : this.addSpacesOnInput(sumFirstYear);
       }
       if (time === 2) {
-        const sumSecondYear = Math.floor(Number(this.sum.replace(/[^\d]/g, '')) * 0.2);
+        const sumSecondYear = Math.floor(Number(this.sum.toString().replace(/[^\d]/g, '')) * 0.2);
         return sumSecondYear < 100000 * 0.2 ? this.addSpacesOnInput(Math.floor(100000 * 0.2)) : this.addSpacesOnInput(sumSecondYear);
       }
-      const sumThirdYear = Math.floor(Number(this.sum.replace(/[^\d]/g, '')) * 0.3);
-      return sumThirdYear < 100000 * 0.3 ? this.addSpacesOnInput(Math.floor(100000 * 0.3)) : this.addSpacesOnInput(sumThirdYear);
+      const sumThirdYear = Math.floor(Number(this.sum.toString().replace(/[^\d]/g, '')) * 0.2);
+      return sumThirdYear < 100000 * 0.2 ? this.addSpacesOnInput(Math.floor(100000 * 0.2)) : this.addSpacesOnInput(sumThirdYear);
     },
     payoutPercent(time) {
       if (time === 1) {
-        return '28%';
+        return '20%';
       }
       if (time === 2) {
         return '20%';
       }
-      return '30%';
+      return '20%';
     },
   },
 };
@@ -126,7 +121,6 @@ export default {
   width: 100%;
   font-family: 'Gerbera', 'Helvetica', Arial, sans-serif;
   margin-top: 20px;
-
   &__content {
     display: flex;
     align-items: flex-start;
@@ -136,7 +130,6 @@ export default {
       flex-direction: column;
     }
   }
-
   &__block-text {
     font-weight: 300;
     font-size: 12px;
@@ -144,7 +137,6 @@ export default {
     margin-bottom: 5px;
     letter-spacing: -0.02em;
   }
-
   &__percent {
     font-weight: 400;
     background: #ffffff;
@@ -159,13 +151,11 @@ export default {
     line-height: 18px;
     letter-spacing: -0.03em;
     white-space: nowrap;
-
     &_total {
       font-size: 18px;
       line-height: 22px;
     }
   }
-
   &__list {
     display: flex;
     width: 100%;
@@ -175,7 +165,6 @@ export default {
       flex-direction: column;
     }
   }
-
   &__item {
     display: flex;
     justify-content: space-between;
@@ -190,7 +179,6 @@ export default {
       flex-direction: row;
     }
   }
-
   &__item-fee,
   &__item-pay {
     display: flex;
@@ -207,7 +195,6 @@ export default {
       text-align: center;
     }
   }
-
   &__item-fee {
     position: relative;
     width: 100%;
@@ -217,12 +204,10 @@ export default {
     @media (max-width: 959px) {
       margin-right: 48px;
     }
-
     .payout-info__price {
       font-size: 16px;
       line-height: 22px;
     }
-
     &:after {
       content: '';
       position: absolute;
@@ -245,7 +230,6 @@ export default {
       }
     }
   }
-
   &__item-pay {
     width: 100%;
     background: linear-gradient(180deg, #b589e7 0%, #8563bf 44.84%, #503988 100%);
@@ -254,23 +238,19 @@ export default {
     @media (max-width: 959px) {
       height: fit-content;
     }
-
     .payout-info__text {
       font-size: 12px;
     }
-
     .payout-info__price {
       font-size: 16px;
       line-height: 22px;
     }
   }
-
   &__result-text,
   &__item-fee--text {
     margin-bottom: 4px;
     font-weight: 300;
   }
-
   &__result {
     display: flex;
     flex-direction: column;
@@ -290,7 +270,6 @@ export default {
       height: auto;
       padding: 8px 28px 8px 40px;
     }
-
     &-info {
       display: flex;
       flex-direction: column;
@@ -313,6 +292,15 @@ export default {
         transform: scale(1.3) translate(0, -50%);
       }
     }
+  }
+  &__result-img--black {
+    &:after {
+      background-image: url('@/assets/images/money--black.svg');
+    }
+  }
+  .loading-color {
+    background: #eae6ed;
+    color: #28323c;
   }
 }
 </style>
