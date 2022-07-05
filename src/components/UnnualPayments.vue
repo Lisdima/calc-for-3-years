@@ -197,11 +197,12 @@ export default {
   }
   &__item-fee {
     position: relative;
-    width: 100%;
+    width: 109px;
     background: #f2f6fa;
     color: #28323c;
     margin-bottom: 32px;
     @media (max-width: 959px) {
+      width: 100%;
       margin-right: 48px;
     }
     .payout-info__price {
@@ -258,7 +259,7 @@ export default {
     padding: 8px 12px;
     border-radius: 4px;
     height: 154px;
-    min-width: 115px;
+    min-width: 126px;
     width: 100%;
     background: 'Gerbera', 'Helvetica', Arial, sans-serif;
     color: #ffffff;
