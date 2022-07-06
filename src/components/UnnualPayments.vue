@@ -64,8 +64,8 @@ export default {
     },
     totalFee() {
       const sum = this.sum.toString().replace(/[^\d]/g, '');
-      const total = Math.floor(Number(sum) * 0.28) + Math.floor(Number(sum) * 0.2) + Math.floor(Number(sum) * 0.3);
-      return total < 78000 ? `${this.addSpacesOnInput(78000)} ₽` : `${this.addSpacesOnInput(total)} ₽`;
+      const total = Math.floor(Number(sum) * 0.2) + Math.floor(Number(sum) * 0.2) + Math.floor(Number(sum) * 0.2);
+      return total < 60000 ? `${this.addSpacesOnInput(60000)} ₽` : `${this.addSpacesOnInput(total)} ₽`;
     },
     fee() {
       const sum = this.sum.toString().replace(/[^\d]/g, '');
