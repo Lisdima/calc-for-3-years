@@ -86,7 +86,7 @@ export default {
         .replace(/^ /, '');
     },
     orderUrl() {
-      window.location.href = `https://order.renlife.ru/policy/?programBrief=NSZH_FINANCIAL_RENT_DSF_3YEAR_V2&sum=${this.currentSum}${window.location.search.replace('?', '&')}`;
+      window.location.href = `https://order.renlife.ru/policy/?programBrief=NSZH_FINANCIAL_RENT_DSF_3YEAR_BANK&sum=${this.currentSum}${window.location.search.replace('?', '&')}`;
       return window.location.href;
     },
     formatPrice(value) {
